@@ -3,30 +3,41 @@ package model.users;
 import model.Page;
 
 public abstract class User extends GuestUser{
-	String nameAndSurname;
 	String username;
-	String password;
+	String name;
+	String surname;
+	String encodedPassword;
 	
 	public User() {
 		super();
-		setNameAndSurname("Unknown");
 		setUsername("Unknown");
+		setName("Unknown");
+		setSurname("Unknown");
 		setPassword("Password");
 	}
 	
-	public User(String nameAndSurname, String username, String password) {
+	public User(String username, String name, String surname, String password) {
 		super();
-		setNameAndSurname(nameAndSurname);
+		setName(name);
+		setSurname(surname);
 		setUsername(username);
 		setPassword(password);
 	}
 
-	public String getNameAndSurname() {
-		return nameAndSurname;
+	public String getName() {
+		return name;
 	}
 
-	public void setNameAndSurname(String nameAndSurname) {
-		this.nameAndSurname = nameAndSurname;
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getUsername() {
@@ -34,22 +45,33 @@ public abstract class User extends GuestUser{
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		if (username != null && username.matches("[a-z0-9.]{8,20}")) {
+			this.username = username;
+		}
+		else {
+			this.username = "Default.username";
+		}
+		
 	}
 
 	public String getPassword() {
-		return password;
+		return encodedPassword;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		if (password != null && encodedPassword.matches("[A-Za-z0-9]{8,20}")) {
+			encodedPassword = password;
+		}
+		else {
+			encodedPassword = "defaultpassword";
+		}
 	}
 	public String toString() {
-		return nameAndSurname + ", " + username;
+		return name + " " + surname + ", " + username;
 	}
 	
 	public boolean login(String inputPassword){
-		if (inputPassword == password) {
+		if (inputPassword == encodedPassword) {
 			return true;
 		}
 		else {
