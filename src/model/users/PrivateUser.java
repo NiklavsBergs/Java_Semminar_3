@@ -3,27 +3,37 @@ package model.users;
 import java.util.ArrayList;
 
 import model.Post;
+import model.PostType;
 
 public class PrivateUser extends User{
-	private ArrayList<Post> privatePosts;
-	private ArrayList<Post> publicPosts;
-	private ArrayList<User> followers;
+	private ArrayList<Post> allPrivatePosts = new ArrayList<>();
+	private ArrayList<Post> allPublicPosts = new ArrayList<>();
+	private ArrayList<PrivateUser> followers = new ArrayList<>();
 	
 	public PrivateUser() {
 		super();
-		ArrayList<Post> privatePosts = new ArrayList<Post>();
-		ArrayList<Post> publicPosts = new ArrayList<Post>();
-		ArrayList<User> followers = new ArrayList<User>();
 	}
 	
 	public PrivateUser(String username, String name, String surname, String password) {
 		super(username, name, surname, password);
-		ArrayList<Post> privatePosts = new ArrayList<Post>();
-		ArrayList<Post> publicPosts = new ArrayList<Post>();
-		ArrayList<User> followers = new ArrayList<User>();
 	}
 	
-	public void followPrivateUser(User user) {
+	public void followPrivateUser(PrivateUser user) {
 		followers.add(user);
 	}
+
+	@Override
+	public Post createPost(Post post, PostType type) {
+		if(type.equals(PostType.privatePost) && !allPrivatePosts.contains(post)) {
+			allPrivatePosts.add(post);
+			return post;
+		}
+		else if (type.equals(PostType.publicPost)) {
+			allPublicPosts.add(post);
+			return post;
+		}
+		return null;
+	}
+	
+	//TODO add/remove follower
 }
