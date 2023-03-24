@@ -3,8 +3,7 @@ package ifaces;
 import model.Post;
 
 public interface IPostCreation {
-	Post post = new Post();
-	public static void createPost(){
-		
+	public static void createPost(String msg){
+		Post post = new Post(msg);
 	}
 }

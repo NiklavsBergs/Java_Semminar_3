@@ -11,8 +11,8 @@ public class Page {
 	public ArrayList<Post> postsInPage = new ArrayList<Post>();
 	
 	public Page() {
-		setTitle(" ");
-		setDescription(" ");
+		setTitle("--TITLE--");
+		setDescription("--DESC--");
 	}
 	
 	public Page(String title, String description) {
@@ -44,10 +44,6 @@ public class Page {
 		else {
 			this.description = "--DESC--";
 		}
-	}
-	
-	public String toString() {
-		return title + ", " + description;
 	}
 	
 	public void addFollower(User follower) {
@@ -82,4 +78,7 @@ public class Page {
 		return postsInPage;
 	}
 
+	public String toString() {
+		return title + ", " + description + " " + postsInPage + " " + followers.size() + " Followers";
+	}
 }
