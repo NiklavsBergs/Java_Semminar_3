@@ -1,6 +1,9 @@
 package model.users;
 
 import model.Page;
+import model.Post;
+import model.PostType;
+import service.MainService;
 
 public abstract class User extends GuestUser{
 	String username;
@@ -70,17 +73,33 @@ public abstract class User extends GuestUser{
 		return "User No." + getGeneratedId() + ": " + name + " " + surname + ", " + username;
 	}
 	
-	public boolean login(String inputPassword){
-		if (inputPassword == encodedPassword) {
-			return true;
+	public static boolean login(String username, String inputPassword){
+		for(User temp: MainService.allRegisteredUsers) {
+			if(temp.getUsername().equals(username) && temp.getPassword().equals(inputPassword)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void followPage(Page page) throws Exception{
+		if(page == null) {
+			throw (new Exception("Page not found"));
 		}
 		else {
-			return false;
+			page.addFollower(this);
 		}
 	}
 	
-	public void followPage(Page page){
-		page.followers.add(this);
+	public void unfollowPage(Page page) throws Exception{
+		if(page == null) {
+			throw (new Exception("Page not found"));
+		}
+		else {
+			page.removeFollower(this);
+		}
 	}
+	
+	public abstract Post createPost(Post post, PostType type);
 	
 }
