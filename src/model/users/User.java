@@ -67,7 +67,7 @@ public abstract class User extends GuestUser{
 		}
 	}
 	public String toString() {
-		return name + " " + surname + ", " + username;
+		return "User No." + getGeneratedId() + ": " + name + " " + surname + ", " + username;
 	}
 	
 	public boolean login(String inputPassword){

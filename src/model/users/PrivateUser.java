@@ -16,8 +16,8 @@ public class PrivateUser extends User{
 		ArrayList<User> followers = new ArrayList<User>();
 	}
 	
-	public PrivateUser(String nameAndSurname, String username, String password) {
-		super(nameAndSurname, username, password);
+	public PrivateUser(String username, String name, String surname, String password) {
+		super(username, name, surname, password);
 		ArrayList<Post> privatePosts = new ArrayList<Post>();
 		ArrayList<Post> publicPosts = new ArrayList<Post>();
 		ArrayList<User> followers = new ArrayList<User>();
