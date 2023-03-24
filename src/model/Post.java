@@ -9,14 +9,14 @@ public class Post {
 	
 	public Post() {
 		setMsg(" ");
-		setDate(LocalDateTime.now());
-		setCountOfLikes(0);
+		setDate();
+		countOfLikes = 0;
 	}
 	
 	public Post(String msg) {
 		setMsg(msg);
-		setDate(LocalDateTime.now());
-		setCountOfLikes(0);
+		setDate();
+		countOfLikes = 0;
 	}
 
 	public String getMsg() {
@@ -24,23 +24,28 @@ public class Post {
 	}
 
 	public void setMsg(String msg) {
-		this.msg = msg;
+		if(msg != null && msg.length() > 0) {
+			this.msg = msg;
+		}
+		else {
+			msg = "----";
+		}
 	}
 
 	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
+	public void setDate() {
+		this.date = LocalDateTime.now();
 	}
 
 	public int getCountOfLikes() {
 		return countOfLikes;
 	}
 
-	public void setCountOfLikes(int countOfLikes) {
-		this.countOfLikes = countOfLikes;
+	public void likePost() {
+		countOfLikes++;
 	}
 	
 	public String toString() {
