@@ -7,21 +7,17 @@ import model.users.User;
 public class Page {
 	private String title;
 	private String description;
-	public ArrayList<User> followers;
-	public ArrayList<Post> postsInPage;
+	public ArrayList<User> followers = new ArrayList<User>();
+	public ArrayList<Post> postsInPage = new ArrayList<Post>();
 	
 	public Page() {
 		setTitle(" ");
 		setDescription(" ");
-		ArrayList<User> followers = new ArrayList<User>();
-		ArrayList<Post> postsInPage  = new ArrayList<Post>();
 	}
 	
 	public Page(String title, String description) {
 		setTitle(title);
 		setDescription(description);
-		ArrayList<User> followers = new ArrayList<User>();
-		ArrayList<Post> postsInPage  = new ArrayList<Post>();
 	}
 
 	public String getTitle() {
@@ -29,7 +25,12 @@ public class Page {
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		if (title != null && title.length() > 0 && title.length() < 30) {
+			this.title = title;
+		}
+		else {
+			this.title = "--TITLE--";
+		}
 	}
 
 	public String getDescription() {
@@ -37,11 +38,48 @@ public class Page {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if (description != null && description.length() > 0 && title.length() < 300) {
+			this.description = description;
+		}
+		else {
+			this.description = "--DESC--";
+		}
 	}
 	
 	public String toString() {
 		return title + ", " + description;
 	}
 	
+	public void addFollower(User follower) {
+		if(follower !=null && !followers.contains(follower)) {
+			followers.add(follower);
+		}
+	}
+	
+	public void removeFollower(User follower) {
+		if(follower !=null && followers.contains(follower)) {
+			followers.remove(follower);
+		}
+	}
+	
+	public void addPost(Post post) {
+		if(post != null) {
+			postsInPage.add(post);
+		}
+	}
+	
+	public void removePost(Post post) {
+		if(post != null && postsInPage.contains(post)) {
+			postsInPage.remove(post);
+		}
+	}
+
+	public ArrayList<User> getFollowers() {
+		return followers;
+	}
+
+	public ArrayList<Post> getPostsInPage() {
+		return postsInPage;
+	}
+
 }

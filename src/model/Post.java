@@ -1,22 +1,21 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Post {
 	private String msg;
 	private LocalDateTime date;
-	private int countOfLikes;
+	private int countOfLikes = 0;
 	
 	public Post() {
 		setMsg(" ");
 		setDate();
-		countOfLikes = 0;
 	}
 	
 	public Post(String msg) {
 		setMsg(msg);
 		setDate();
-		countOfLikes = 0;
 	}
 
 	public String getMsg() {
@@ -44,11 +43,11 @@ public class Post {
 		return countOfLikes;
 	}
 
-	public void likePost() {
+	public void increaseLikes() {
 		countOfLikes++;
 	}
 	
 	public String toString() {
-		return msg + ", " + date + ", " + countOfLikes;
+		return msg + ", " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyy hh:mm")) + ", (" + countOfLikes + ")";
 	}
 }
