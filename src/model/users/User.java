@@ -82,9 +82,9 @@ public abstract class User extends GuestUser{
 		return "User No." + getGeneratedId() + ": " + name + " " + surname + ", " + username;
 	}
 	
-	public static boolean login(String username, String inputPassword){
+	public boolean login(){
 		for(User temp: MainService.allRegisteredUsers) {
-			if(temp.getUsername().equals(username) && temp.getPassword().equals(inputPassword)) {
+			if(temp.getUsername().equals(username) && temp.getPassword().equals(encodedPassword)) {
 				return true;
 			}
 		}

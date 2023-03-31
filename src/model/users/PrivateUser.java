@@ -40,5 +40,9 @@ public class PrivateUser extends User{
 		return allPublicPosts;
 	}
 	
+	public ArrayList<PrivateUser> getAllFolowers() {
+		return followers;
+	}
+	
 	//TODO add/remove follower
 }
