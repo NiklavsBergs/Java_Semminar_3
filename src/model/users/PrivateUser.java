@@ -2,6 +2,7 @@ package model.users;
 
 import java.util.ArrayList;
 
+import model.Page;
 import model.Post;
 import model.PostType;
 
@@ -33,6 +34,10 @@ public class PrivateUser extends User{
 			return post;
 		}
 		return null;
+	}
+	
+	public ArrayList<Post> getAllPublicPosts() {
+		return allPublicPosts;
 	}
 	
 	//TODO add/remove follower

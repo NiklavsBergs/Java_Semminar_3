@@ -79,6 +79,6 @@ public class Page {
 	}
 
 	public String toString() {
-		return title + ", " + description + " " + postsInPage + " " + followers.size() + " Followers";
+		return title + ", " + description + " " + postsInPage + " " + followers.size() + " Followers" + "\n";
 	}
 }

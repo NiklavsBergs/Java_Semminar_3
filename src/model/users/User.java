@@ -50,7 +50,7 @@ public abstract class User extends GuestUser{
 	}
 
 	public void setUsername(String username) {
-		if (username != null && username.matches("[a-z0-9.]{8,20}")) {
+		if (username != null && username.matches("[a-z0-9.]{4,20}")) {
 			this.username = username;
 		}
 		else {
@@ -64,7 +64,7 @@ public abstract class User extends GuestUser{
 	}
 
 	public void setPassword(String inputPassword) {
-		if (inputPassword != null && encodedPassword.matches("[A-Za-z0-9]{8,20}")) {
+		if (inputPassword != null && inputPassword.matches("[A-Za-z0-9]{8,20}")) {
 			try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update(inputPassword.getBytes());

@@ -9,11 +9,11 @@ import model.PostType;
 public class BusinessUser extends User{
 	private ArrayList<Page> allPages = new ArrayList<Page>();
 	
-	BusinessUser(){
+	public BusinessUser(){
 		super();
 	}
 	
-	BusinessUser(String username, String name, String surname,  String password){
+	public BusinessUser(String username, String name, String surname,  String password){
 		super(username, name, surname, password);
 	}
 	
