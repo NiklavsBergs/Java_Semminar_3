@@ -39,6 +39,7 @@ public class MainService {
 			business1.addPage(swedbankLiepaja);
 			business1.createPostInPage(swedbankVentspils, new Post("Kredīti par brīvu"));
 			business1.createPostInPage(swedbankVentspils, new Post("Sāc savu pensiju plānu!"));
+			business1.createPostInPage(swedbankLiepaja, new Post("Te ari kredīti par brīvu!"));
 			
 			private1.followPage(swedbankVentspils);
 			
@@ -52,7 +53,10 @@ public class MainService {
 				System.out.println(temp);
 			}
 			
-			business1.getAllPages().get(0).getPostsInPage().get(0).increaseLikes();
+			business1.getAllPages().get(0).getPostsInPage().get(0).increaseLikes(private1);
+			business1.getAllPages().get(0).getPostsInPage().get(0).increaseLikes(private1);
+			business1.getAllPages().get(0).getPostsInPage().get(0).increaseLikes(private2);
+			business1.getAllPages().get(0).getPostsInPage().get(0).increaseLikes(private2);
 			
 			for(Post temp: business1.getAllPages().get(0).getPostsInPage()) {
 				System.out.println(temp);
@@ -65,6 +69,15 @@ public class MainService {
 			
 			System.out.println("private1 Followers: ");
 			System.out.println(private2.getAllFolowers());
+			
+			System.out.println("-----Search-----");
+			System.out.println("---Users---");
+			System.out.println(private2.findUsersBySurnameOrUsername("Kārlis"));
+			System.out.println("---Pages---");
+			System.out.println(private2.findPagesByTitleOrDescripion("swedbank"));
+			System.out.println("---Posts---");
+			System.out.println(private2.findPublicPosts("kredīti"));
+			
 			
 			
 			

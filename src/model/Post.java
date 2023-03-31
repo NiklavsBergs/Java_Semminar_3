@@ -2,11 +2,14 @@ package model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import model.users.User;
 
 public class Post {
 	private String msg;
 	private LocalDateTime date;
-	private int countOfLikes = 0;
+	private ArrayList<User> usersLiked = new ArrayList<User>();
 	
 	public Post() {
 		setMsg(" ");
@@ -40,14 +43,16 @@ public class Post {
 	}
 
 	public int getCountOfLikes() {
-		return countOfLikes;
+		return usersLiked.size();
 	}
 
-	public void increaseLikes() {
-		countOfLikes++;
+	public void increaseLikes(User user) {
+		if(!usersLiked.contains(user)) {
+			usersLiked.add(user);
+		}
 	}
 	
 	public String toString() {
-		return msg + ", " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyy hh:mm")) + ", (" + countOfLikes + ")";
+		return msg + ", " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyy hh:mm")) + ", (" + getCountOfLikes() + ")";
 	}
 }
